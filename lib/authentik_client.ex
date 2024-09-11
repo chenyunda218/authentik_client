@@ -1,17 +1,8 @@
 defmodule AuthentikClient do
-  @moduledoc """
-  Documentation for `AuthentikClient`.
-  """
+  @client_id Application.get_env(:authentik, :client_id, "")
+  @client_secret Application.get_env(:authentik, :client_secret, "")
+  @base_url Application.get_env(:authentik, :base_url, "")
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> AuthentikClient.hello()
-      :world
-
-  """
   @spec new_client(Keyword.t()) :: map()
   def new_client(configs) do
     %{
