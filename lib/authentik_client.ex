@@ -29,7 +29,7 @@ defmodule AuthentikClient do
         code,
         redirect_uri
       ) do
-    Req.post!(base_url,
+    Req.post!("#{base_url}/application/o/token/",
       form: [
         client_id: client_id,
         client_secret: client_secret,
