@@ -4,6 +4,11 @@ defmodule AuthentikClient do
   @base_url Application.get_env(:authentik, :base_url, "")
 
   @spec new_client(Keyword.t()) :: map()
+  def new_client() do
+    new_client([])
+  end
+
+  @spec new_client(Keyword.t()) :: map()
   def new_client(configs) do
     %{
       client_id: Application.get_env(Authentik, :client_id, Keyword.get(configs, :client_id, "")),
@@ -41,7 +46,7 @@ defmodule AuthentikClient do
         redirect_uri
       )
       when is_bitstring(scope) do
-    "#{base_url}/application/o/authorize/?client_id=#{client_id}&scope=#{scope}&redirect_uri=#{redirect_uri}"
+    "#{base_url}/application/o/authorize/?client_id=#{client_id}&scope=#{scope}&redirect_uri=#{redirect_uri}&response_type=code"
   end
 
   def oauth2_authorize_url(
